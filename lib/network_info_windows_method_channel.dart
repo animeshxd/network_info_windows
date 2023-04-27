@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -10,8 +12,9 @@ class MethodChannelNetworkInfoWindows extends NetworkInfoWindowsPlatform {
   final methodChannel = const MethodChannel('network_info_windows');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  // ignore: non_constant_identifier_names
+  Future<Map<String, dynamic>> GetAdaptersInfo() async {
+    final result = await methodChannel.invokeMethod<String>('GetAdaptersInfo');
+    return json.decode(result!);
   }
 }

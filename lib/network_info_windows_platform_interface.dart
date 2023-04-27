@@ -23,7 +23,8 @@ abstract class NetworkInfoWindowsPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+  // ignore: non_constant_identifier_names
+  Future<Map<String, dynamic>> GetAdaptersInfo() async {
+    throw UnimplementedError('GetAdaptersInfo() has not been implemented.');
   }
 }

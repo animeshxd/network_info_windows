@@ -1,6 +1,8 @@
 #ifndef FLUTTER_PLUGIN_NETWORK_INFO_WINDOWS_PLUGIN_C_API_H_
 #define FLUTTER_PLUGIN_NETWORK_INFO_WINDOWS_PLUGIN_C_API_H_
 
+#include <WinSock2.h> // fix includes
+
 #include <flutter_plugin_registrar.h>
 
 #ifdef FLUTTER_PLUGIN_IMPL
