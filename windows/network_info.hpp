@@ -34,7 +34,7 @@ nlohmann::json GetAdaptersInfo()
     ULONG flags = GAA_FLAG_INCLUDE_PREFIX | GAA_FLAG_SKIP_ANYCAST | GAA_FLAG_SKIP_MULTICAST | GAA_FLAG_SKIP_DNS_SERVER | GAA_FLAG_INCLUDE_GATEWAYS;
 
     // default to unspecified address family (both)
-    ULONG family = AF_INET;
+    ULONG family = AF_UNSPEC;
 
 
     PIP_ADAPTER_ADDRESSES pAddresses = NULL;
