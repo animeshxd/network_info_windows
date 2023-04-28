@@ -138,6 +138,12 @@ nlohmann::json GetAdaptersInfo()
 
                     data["PhysicalAddress"] = mac;
                 }
+                if(pCurrAddresses->Dhcpv6Server.iSockaddrLength != 0) {
+                    data["Dhcpv6Server"] = AddressToString(pCurrAddresses->Dhcpv6Server);
+                }
+                if(pCurrAddresses->Dhcpv4Server.iSockaddrLength != 0) {
+                    data["Dhcpv4Server"] = AddressToString(pCurrAddresses->Dhcpv4Server);
+                }
 
                 data["IfType"] = pCurrAddresses->IfType;
                 data["OperStatus"] = pCurrAddresses->OperStatus;
