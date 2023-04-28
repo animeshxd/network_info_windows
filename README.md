@@ -26,7 +26,7 @@ NetworkInfoWindows().GetAdaptersInfo();
     "Dhcpv4Server": "192.168.0.1",
     "FriendlyName": "WiFi",
     "GatewayAddress": {
-      "AF_INET4": [],
+      "AF_INET": [],
       "AF_INET6": []
     },
     "IfType": 71,
@@ -49,7 +49,7 @@ NetworkInfoWindows().GetAdaptersInfo();
     "Dhcpv4Server": "192.168.0.1",
     "FriendlyName": "Local Area Connection* 1",
     "GatewayAddress": {
-      "AF_INET4": [],
+      "AF_INET": [],
       "AF_INET6": []
     },
     "IfType": 71,
@@ -72,7 +72,7 @@ NetworkInfoWindows().GetAdaptersInfo();
     "Dhcpv4Server": "192.168.0.1",
     "FriendlyName": "Local Area Connection* 2",
     "GatewayAddress": {
-      "AF_INET4": [],
+      "AF_INET": [],
       "AF_INET6": []
     },
     "IfType": 71,
@@ -95,7 +95,7 @@ NetworkInfoWindows().GetAdaptersInfo();
     "Dhcpv4Server": "192.168.0.1",
     "FriendlyName": "Loopback Pseudo-Interface 1",
     "GatewayAddress": {
-      "AF_INET4": [],
+      "AF_INET": [],
       "AF_INET6": []
     },
     "IfType": 24,
@@ -118,7 +118,7 @@ NetworkInfoWindows().GetAdaptersInfo();
     "Dhcpv4Server": "192.168.0.1",
     "FriendlyName": "Ethernet",
     "GatewayAddress": {
-      "AF_INET4": [
+      "AF_INET": [
         "192.168.0.1"
       ],
       "AF_INET6": []
