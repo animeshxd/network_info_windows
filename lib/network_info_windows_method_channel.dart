@@ -13,8 +13,10 @@ class MethodChannelNetworkInfoWindows extends NetworkInfoWindowsPlatform {
 
   @override
   // ignore: non_constant_identifier_names
-  Future<Map<String, dynamic>> GetAdaptersInfo() async {
+  Future<Map<String, Map<String, dynamic>>> GetAdaptersInfo() async {
     final result = await methodChannel.invokeMethod<String>('GetAdaptersInfo');
-    return json.decode(result!);
+    if (result == null) return {};
+    return Map<String, dynamic>.from(json.decode(result))
+        .map((key, value) => MapEntry(key, value as Map<String, dynamic>));
   }
 }

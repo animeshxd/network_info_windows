@@ -24,7 +24,7 @@ abstract class NetworkInfoWindowsPlatform extends PlatformInterface {
   }
 
   // ignore: non_constant_identifier_names
-  Future<Map<String, dynamic>> GetAdaptersInfo() async {
+  Future<Map<String, Map<String, dynamic>>> GetAdaptersInfo() async {
     throw UnimplementedError('GetAdaptersInfo() has not been implemented.');
   }
 }
