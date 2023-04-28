@@ -141,6 +141,7 @@ nlohmann::json GetAdaptersInfo()
 
                 data["IfType"] = pCurrAddresses->IfType;
                 data["OperStatus"] = pCurrAddresses->OperStatus;
+                data["ConnectionType"] = pCurrAddresses->ConnectionType;
                 /* printf("\tIpv6IfIndex (IPv6 interface): %u\n",
                      pCurrAddresses->Ipv6IfIndex);
                  printf("\tZoneIndices (hex): ");
