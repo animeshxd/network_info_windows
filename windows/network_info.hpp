@@ -1,4 +1,4 @@
-#include <winsock2.h>
+﻿#include <winsock2.h>
 #include <iphlpapi.h>
 #include <ws2tcpip.h>
 #include "json.hpp"
@@ -78,7 +78,7 @@ nlohmann::json GetAdaptersInfo()
         pCurrAddresses = pAddresses;
         while (pCurrAddresses)
         {
-            if (pCurrAddresses->IfType == MIB_IF_TYPE_ETHERNET || pCurrAddresses->IfType == IF_TYPE_IEEE80211)
+            if (pCurrAddresses->IfType == MIB_IF_TYPE_ETHERNET || pCurrAddresses->IfType == IF_TYPE_IEEE80211 || pCurrAddresses->IfType == IF_TYPE_SOFTWARE_LOOPBACK)
             {
 
                 data["OperStatus"] = pCurrAddresses->OperStatus;
