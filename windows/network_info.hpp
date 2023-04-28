@@ -1,4 +1,4 @@
-﻿#include <winsock2.h>
+#include <winsock2.h>
 #include <iphlpapi.h>
 #include <ws2tcpip.h>
 #include "json.hpp"
@@ -11,6 +11,8 @@
 #define FREE(x) HeapFree(GetProcessHeap(), 0, (x))
 
 /* Note: could also use malloc() and free() */
+
+std::string AddressToString(SOCKET_ADDRESS Address);
 
 class GetAdaptersAddressesFailed : public std::exception
 {
@@ -90,20 +92,18 @@ nlohmann::json GetAdaptersInfo()
                 {
                     if (pUnicast->Address.lpSockaddr->sa_family == AF_INET)
                     {
-                        char szIpAddr[INET_ADDRSTRLEN];
-                        inet_ntop(AF_INET, &((struct sockaddr_in *)pUnicast->Address.lpSockaddr)->sin_addr, szIpAddr, sizeof(szIpAddr));
-                        ipv4s.push_back(szIpAddr);
+                        ipv4s.push_back(AddressToString(pUnicast->Address));
                     }
                     else if (pUnicast->Address.lpSockaddr->sa_family == AF_INET6)
                     {
-                        char szIpAddr[INET6_ADDRSTRLEN];
-                        inet_ntop(AF_INET6, &((struct sockaddr_in6 *)pUnicast->Address.lpSockaddr)->sin6_addr, szIpAddr, sizeof(szIpAddr));
-                        ipv6s.push_back(szIpAddr);
+                        ipv6s.push_back(AddressToString(pUnicast->Address));
                     }
                     pUnicast = pUnicast->Next;
                 }
-                data["IPv4 Address"] = ipv4s;
-                data["IPv6 Address"] = ipv6s;
+                data["UnicastAddress"] = {
+                    {"AF_INET", ipv4s},
+                    {"AF_INET6", ipv6s}
+                };
                 data["Description"] = _bstr_t(pCurrAddresses->Description);
                 data["FriendlyName"] = _bstr_t(pCurrAddresses->FriendlyName);
 
@@ -154,4 +154,21 @@ nlohmann::json GetAdaptersInfo()
     if (pAddresses)
         FREE(pAddresses);
     return json;
+}
+
+std::string AddressToString(SOCKET_ADDRESS Address)
+{
+    if (Address.lpSockaddr->sa_family == AF_INET)
+    {
+        char szIpAddr[INET_ADDRSTRLEN];
+        inet_ntop(AF_INET, &((struct sockaddr_in *)Address.lpSockaddr)->sin_addr, szIpAddr, sizeof(szIpAddr));
+        return std::string(szIpAddr);
+    }
+    else if (Address.lpSockaddr->sa_family == AF_INET6)
+    {
+        char szIpAddr[INET6_ADDRSTRLEN];
+        inet_ntop(AF_INET6, &((struct sockaddr_in6 *)Address.lpSockaddr)->sin6_addr, szIpAddr, sizeof(szIpAddr));
+        return std::string(szIpAddr);
+    }
+    return std::string();
 }
