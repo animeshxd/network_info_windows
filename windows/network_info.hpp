@@ -107,6 +107,26 @@ nlohmann::json GetAdaptersInfo()
                 data["Description"] = _bstr_t(pCurrAddresses->Description);
                 data["FriendlyName"] = _bstr_t(pCurrAddresses->FriendlyName);
 
+                auto pGateway = pCurrAddresses->FirstGatewayAddress;
+                std::vector<std::string> ipv4sGateway;
+                std::vector<std::string> ipv6sGateway;
+                while (pGateway)
+                {
+                    if (pGateway->Address.lpSockaddr->sa_family == AF_INET)
+                    {
+                        ipv4sGateway.push_back(AddressToString(pGateway->Address));
+                    }
+                    else if (pGateway->Address.lpSockaddr->sa_family == AF_INET6)
+                    {
+                        ipv6sGateway.push_back(AddressToString(pGateway->Address));
+                    }
+                    pGateway = pGateway->Next;
+                }
+                data["GatewayAddress"] = {
+                    {"AF_INET4", ipv4sGateway},
+                    {"AF_INET6", ipv6sGateway}
+                };
+
                 if (pCurrAddresses->PhysicalAddressLength != 0)
                 {
                     auto &PhysicalAddress = pCurrAddresses->PhysicalAddress;
