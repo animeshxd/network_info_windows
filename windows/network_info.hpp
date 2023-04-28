@@ -123,7 +123,7 @@ nlohmann::json GetAdaptersInfo()
                     pGateway = pGateway->Next;
                 }
                 data["GatewayAddress"] = {
-                    {"AF_INET4", ipv4sGateway},
+                    {"AF_INET", ipv4sGateway},
                     {"AF_INET6", ipv6sGateway}
                 };
 
