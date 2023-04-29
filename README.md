@@ -4,8 +4,11 @@ A package to get Windows Network Adapters Info
 
 This package is related to windows [GetAdaptersAddresses](https://learn.microsoft.com/en-us/windows/win32/api/iphlpapi/nf-iphlpapi-getadaptersaddresses) function (iphlpapi.h)
 
-## supported:
-* Ethernet, Wifi and software loopback network interface
+## supported: 
+  * Adapters: 
+    * An Ethernet network interface or USB Tethering
+    * An IEEE 802.11 wireless network interface. (Wifi)
+    * A software loopback network interface. 
 * unicast address
 
 example:
