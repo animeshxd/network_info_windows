@@ -16,7 +16,7 @@ example:
 ```dart
 import 'package:network_info_windows/network_info_windows.dart';
 
-NetworkInfoWindows().GetAdaptersInfo();
+await NetworkInfoWindows().GetAdaptersInfo();
 
 ```
 ``` json
